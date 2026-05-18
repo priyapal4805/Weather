@@ -41,10 +41,10 @@ function App() {
     }
     
   };
-  
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(()=>{
+    useEffect(()=>{
     fetchWeatherData();
+    
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   const handleInputChange=(event)=> {
   console.log(event.target.value);
