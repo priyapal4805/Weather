@@ -82,7 +82,7 @@ function App() {
   return (
     <div className="App">
      <div className='container'>
-      {weatherData && (
+      {weatherData?.main && weatherData?.weather && (
         <> <h1 className='container_date'>{formattedDate}</h1>
      <div className='weather_data'>
       <h2 className='container_city'>{weatherData.name}</h2>
