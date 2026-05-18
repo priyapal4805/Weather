@@ -43,7 +43,7 @@ function App() {
   };
   useEffect(()=>{
     fetchWeatherData();
-  },[])
+  },[city])
   const handleInputChange=(event)=> {
   console.log(event.target.value);
   setCity(event.target.value);
