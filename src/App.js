@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect,useState,useCallback } from 'react';
+import { useEffect,useState, } from 'react';
 
 function App() {
   const [city,setCity]=useState("Delhi");
@@ -28,7 +28,7 @@ function App() {
 
   const formattedDate = `${month} ${day}, ${year}`;
   const API_KEY="d4a4482e2590b6ef45a235ee12568d38";
-  const fetchWeatherData=useCallback(async () => {
+  const fetchWeatherData=async () => {
     try{
       const response=await fetch (`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
     
@@ -40,10 +40,10 @@ function App() {
       console.log(error);
     }
     
-  },[city]);
+  };// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(()=>{
     fetchWeatherData();
-  },[fetchWeatherData])
+  },[])
   const handleInputChange=(event)=> {
   console.log(event.target.value);
   setCity(event.target.value);
@@ -86,12 +86,12 @@ function App() {
       <h2 className='container_city'>{weatherData.name}</h2>
       <img
   className="container_img"
-  src={getWeatherIconUrl(weatherData.weather[0].main)}
+  src={getWeatherIconUrl(weatherData?.weather?.[0]?.main)}
   width="180px"
   alt="Weather Icon"
 />
-     <h2 className='container_degree'>{weatherData.main.temp}</h2>
-     <h2 className='country_per'>{weatherData.weather[0].main}</h2>
+     <h2 className='container_degree'>{weatherData?.main?.temp}</h2>
+     <h2 className='country_per'>{weatherData?.weather?.[0]?.main}</h2>
      <form className='form' onSubmit={handleSubmit}>
       <input type='text' className='input' placeholder='Enter city name' onChange={handleInputChange}></input>
       <button type='submit'>Get</button>
