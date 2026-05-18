@@ -40,7 +40,9 @@ function App() {
       console.log(error);
     }
     
-  };// eslint-disable-next-line react-hooks/exhaustive-deps
+  };
+  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(()=>{
     fetchWeatherData();
   },[])
