@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useCallback } from 'react';
 
 function App() {
   const [city,setCity]=useState("Delhi");
@@ -28,7 +28,7 @@ function App() {
 
   const formattedDate = `${month} ${day}, ${year}`;
   const API_KEY="d4a4482e2590b6ef45a235ee12568d38";
-  const fetchWeatherData=async () => {
+  const fetchWeatherData=useCallback(async () => {
     try{
       const response=await fetch (`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
     
@@ -40,10 +40,10 @@ function App() {
       console.log(error);
     }
     
-  };
+  },[city]);
   useEffect(()=>{
     fetchWeatherData();
-  },[city])
+  },[fetchWeatherData])
   const handleInputChange=(event)=> {
   console.log(event.target.value);
   setCity(event.target.value);
